@@ -36,6 +36,9 @@
 			this.BtnTX = new System.Windows.Forms.Button();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.TxtRX = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
+			this.TxtBaud = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// BtnOpen
@@ -60,10 +63,11 @@
 			// 
 			// TxtCom
 			// 
-			this.TxtCom.Location = new System.Drawing.Point(35, 28);
+			this.TxtCom.Location = new System.Drawing.Point(45, 12);
 			this.TxtCom.Name = "TxtCom";
 			this.TxtCom.Size = new System.Drawing.Size(106, 20);
 			this.TxtCom.TabIndex = 2;
+			this.TxtCom.Text = "COM4";
 			// 
 			// TxtTX
 			// 
@@ -96,11 +100,40 @@
 			this.TxtRX.Size = new System.Drawing.Size(717, 203);
 			this.TxtRX.TabIndex = 5;
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(3, 15);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(37, 13);
+			this.label1.TabIndex = 6;
+			this.label1.Text = "PORT";
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(3, 41);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(37, 13);
+			this.label2.TabIndex = 8;
+			this.label2.Text = "BAUD";
+			// 
+			// TxtBaud
+			// 
+			this.TxtBaud.Location = new System.Drawing.Point(45, 38);
+			this.TxtBaud.Name = "TxtBaud";
+			this.TxtBaud.Size = new System.Drawing.Size(106, 20);
+			this.TxtBaud.TabIndex = 7;
+			this.TxtBaud.Text = "115200";
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.label2);
+			this.Controls.Add(this.TxtBaud);
+			this.Controls.Add(this.label1);
 			this.Controls.Add(this.TxtRX);
 			this.Controls.Add(this.BtnTX);
 			this.Controls.Add(this.TxtTX);
@@ -123,6 +156,9 @@
 		private System.Windows.Forms.Button BtnTX;
 		private System.Windows.Forms.Timer timer1;
 		private System.Windows.Forms.TextBox TxtRX;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.TextBox TxtBaud;
 	}
 }
 

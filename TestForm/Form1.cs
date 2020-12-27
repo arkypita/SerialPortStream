@@ -24,7 +24,7 @@ namespace TestForm
 			if (sps == null)
 			{
 				sps = new SerialPortStream(TxtCom.Text);
-				sps.BaudRate = 115200;
+				sps.BaudRate = int.Parse(TxtBaud.Text);
 				sps.Open();
 			}
 		}
