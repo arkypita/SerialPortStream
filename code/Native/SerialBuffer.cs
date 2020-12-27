@@ -61,7 +61,7 @@ namespace RJCP.IO.Ports.Native
             {
                 return !m_Pinned ?
                     IntPtr.Zero :
-                    m_ReadHandle.AddrOfPinnedObject() + m_ReadBuffer.End;
+                    new IntPtr(m_ReadHandle.AddrOfPinnedObject().ToInt64() + m_ReadBuffer.End);
             }
         }
 
@@ -73,7 +73,7 @@ namespace RJCP.IO.Ports.Native
             {
                 return !m_Pinned ?
                     IntPtr.Zero :
-                    m_WriteHandle.AddrOfPinnedObject() + m_WriteBuffer.Start;
+                    new IntPtr(m_WriteHandle.AddrOfPinnedObject().ToInt64() + m_WriteBuffer.Start);
             }
         }
 
@@ -526,15 +526,15 @@ namespace RJCP.IO.Ports.Native
                     m_ReadHandle.Free();
                     m_WriteHandle.Free();
                 }
-                m_ReadBufferNotEmptyEvent.Dispose();
-                m_ReadBufferNotFullEvent.Dispose();
-                m_ReadEvent.Dispose();
-                m_WriteBufferNotFullEvent.Dispose();
-                m_WriteBufferNotEmptyEvent.Dispose();
-                m_TxEmptyEvent.Dispose();
-                m_AbortWriteEvent.Dispose();
-                m_AbortReadEvent.Dispose();
-                m_DeviceDead.Dispose();
+                m_ReadBufferNotEmptyEvent.Close();
+                m_ReadBufferNotFullEvent.Close();
+                m_ReadEvent.Close();
+                m_WriteBufferNotFullEvent.Close();
+                m_WriteBufferNotEmptyEvent.Close();
+                m_TxEmptyEvent.Close();
+                m_AbortWriteEvent.Close();
+                m_AbortReadEvent.Close();
+                m_DeviceDead.Close();
                 m_ReadBuffer = null;
                 m_WriteBuffer = null;
             }

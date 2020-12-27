@@ -95,16 +95,16 @@ namespace RJCP.IO.Ports.Native
         // For compatibility with libnserial 1.0 only.
         private void ThrowExceptionMono()
         {
-            Mono.Unix.Native.Errno errno = Mono.Unix.Native.NativeConvert.ToErrno(m_Dll.errno);
-            string description = m_Dll.serial_error(m_Handle);
-            switch (errno) {
-            case Mono.Unix.Native.Errno.EINVAL:
-                throw new ArgumentException(description);
-            case Mono.Unix.Native.Errno.EACCES:
-                throw new UnauthorizedAccessException(description);
-            default:
-                throw new InvalidOperationException(description);
-            }
+            //Mono.Unix.Native.Errno errno = Mono.Unix.Native.NativeConvert.ToErrno(m_Dll.errno);
+            //string description = m_Dll.serial_error(m_Handle);
+            //switch (errno) {
+            //case Mono.Unix.Native.Errno.EINVAL:
+            //    throw new ArgumentException(description);
+            //case Mono.Unix.Native.Errno.EACCES:
+            //    throw new UnauthorizedAccessException(description);
+            //default:
+            //    throw new InvalidOperationException(description);
+            //}
         }
 #endif
 
@@ -990,7 +990,7 @@ namespace RJCP.IO.Ports.Native
                 if (IsOpen) Close();
                 m_Handle.Dispose();
                 m_Dll = null;
-                m_StopRunning.Dispose();
+                m_StopRunning.Close();
                 m_StopRunning = null;
                 m_IsDisposed = true;
             }

@@ -880,12 +880,12 @@ namespace RJCP.IO.Ports.Native.Windows
 
             if (disposing) {
                 Stop();
-                m_StopRunning.Dispose();
-                m_SerialCommEvent.Dispose();
-                m_ReadEvent.Dispose();
-                m_WriteEvent.Dispose();
-                m_WriteClearEvent.Dispose();
-                m_WriteClearDoneEvent.Dispose();
+                m_StopRunning.Close();
+                m_SerialCommEvent.Close();
+                m_ReadEvent.Close();
+                m_WriteEvent.Close();
+                m_WriteClearEvent.Close();
+                m_WriteClearDoneEvent.Close();
                 CommErrorEvent = null;
                 CommEvent = null;
             }

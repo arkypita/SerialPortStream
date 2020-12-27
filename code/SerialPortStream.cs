@@ -161,7 +161,7 @@ namespace RJCP.IO.Ports
             set
             {
                 if (IsDisposed) throw new ObjectDisposedException("SerialPortStream");
-                if (string.IsNullOrWhiteSpace(value)) throw new ArgumentException("Must provide a valid name for a COM port");
+                if (string.IsNullOrEmpty(value?.Trim())) throw new ArgumentException("Must provide a valid name for a COM port");
                 if (m_NativeSerial.IsOpen && value != m_NativeSerial.PortName) throw new InvalidOperationException("Serial Port already opened");
 
                 m_NativeSerial.PortName = value;
@@ -1969,7 +1969,7 @@ namespace RJCP.IO.Ports
                     }
                 }
                 if (eventRunning) m_EventProcessing.WaitOne();
-                m_EventProcessing.Dispose();
+                m_EventProcessing.Close();
 
                 if (m_Buffer != null) m_Buffer.Stream.AbortWait();
 
@@ -1999,7 +1999,7 @@ namespace RJCP.IO.Ports
         public override string ToString()
         {
             if (IsDisposed) return "SerialPortStream: Disposed";
-            if (string.IsNullOrWhiteSpace(PortName)) return "SerialPortStream: Invalid configuration";
+            if (string.IsNullOrEmpty(PortName?.Trim())) return "SerialPortStream: Invalid configuration";
 
             char p;
             switch (Parity) {
@@ -2057,5 +2057,18 @@ namespace RJCP.IO.Ports
                 ((Handshake & Handshake.XOn) != 0) ? "on" : "off",
                 dsrStatus, ctsStatus, dtrStatus, rtsStatus);
         }
-    }
+
+		public void CopyTo(Stream output)
+		{
+			CopyTo(output, 81920);
+		}
+
+		public void CopyTo(Stream output, int bufferSize)
+		{
+			byte[] buffer = new byte[bufferSize];
+			int read;
+			while ((read = Read(buffer, 0, buffer.Length)) > 0)
+				output.Write(buffer, 0, read);
+		}
+	}
 }

@@ -830,7 +830,7 @@ namespace RJCP.IO.Ports.Native
         public void Open()
         {
             if (m_IsDisposed) throw new ObjectDisposedException("WinNativeSerial");
-            if (string.IsNullOrWhiteSpace(PortName)) throw new InvalidOperationException("Port must first be set");
+            if (string.IsNullOrEmpty(PortName?.Trim())) throw new InvalidOperationException("Port must first be set");
             if (IsOpen) throw new InvalidOperationException("Serial Port currently open");
 
             m_ComPortHandle = UnsafeNativeMethods.CreateFile(@"\\.\" + PortName,
